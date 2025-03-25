@@ -9,9 +9,14 @@ import SwiftUI
 
 @main
 struct FireFlyApp: App {
+
+    @StateObject var container: DIContainer = .init(services: Services())
+    
     var body: some Scene {
+
         WindowGroup {
-            ContentView()
+            MainTabView(mainTabViewModel: MainTabViewModel(container: container))
+                .environmentObject(container)
         }
     }
 }
