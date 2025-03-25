@@ -20,13 +20,13 @@ enum MainTabType: String, CaseIterable, CustomStringConvertible {
             return "컬렉션"
         }
     }
-    
-    var index: Int {
-        switch self {
-        case .myProfile:
-                .zero
-        case .collcetion:
-            1
-        }
-    }
+//    
+//    var index: Int {
+//        switch self {
+//        case .myProfile:
+//                .zero
+//        case .collcetion:
+//            1
+//        }
+//    }
 }

@@ -13,16 +13,33 @@ struct MainTabView: View {
     @Bindable var mainTabViewModel: MainTabViewModel
     
     var body: some View {
-        TabView(selection: $mainTabViewModel.container.tabs) {
-            MyProfileCardView(myProfileViewModel: MyProfileCardViewModel(container: container))
-                .tag(0)
-                .tabItem {Image(systemName: "list.bullet.rectangle") }
+        VStack {
+            HStack(spacing: 10) {
+                ForEach(MainTabType.allCases, id: \.self) { tabType in
+                    VStack {
+                        Button(tabType.description) {
+                            mainTabViewModel.send(action: .selectTab(tabType))
+                        }
+                        .foregroundStyle(mainTabViewModel.container.tabs == tabType ? .blue : .gray)
+                        .animation(.easeInOut(duration: 0.3), value: mainTabViewModel.container.tabs)
+                        Rectangle()
+                            .frame(height: 1)
+                    }
+                }
+            }
             
-            CollectionView(collectionViewModel: CollectionViewModel(container: container))
-                .tag(1)
-                .tabItem { Image(systemName: "list.bullet.rectangle") }
+            TabView(selection: $mainTabViewModel.container.tabs) {
+                MyProfileCardView(myProfileViewModel: MyProfileCardViewModel(container: container))
+                    .tag(MainTabType.myProfile)
+                
+                
+                CollectionView(collectionViewModel: CollectionViewModel(container: container))
+                    .tag(MainTabType.collcetion)
+                
+            }
+            .tabViewStyle(.page(indexDisplayMode: .never))
+            .environmentObject(container)
         }
-        .environmentObject(container)
     }
 }
 

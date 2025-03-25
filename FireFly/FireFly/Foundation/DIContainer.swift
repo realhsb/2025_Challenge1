@@ -9,7 +9,7 @@ import Foundation
 
 class DIContainer: ObservableObject {
     var services: ServiceType
-    var tabs: Int = 0
+    @Published var tabs: MainTabType = .myProfile
     
     init(
         services: ServiceType
