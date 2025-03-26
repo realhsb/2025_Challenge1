@@ -15,8 +15,16 @@ struct FireFlyApp: App {
     var body: some Scene {
 
         WindowGroup {
-            MainTabView(mainTabViewModel: MainTabViewModel(container: container))
-                .environmentObject(container)
-        }
+//            NavigationStack(path: $container.pathModel.paths) {
+                MainTabView(mainTabViewModel: MainTabViewModel(container: container))
+                    .environmentObject(container)
+//                    .navigationDestination(for: PathType.self) { path in
+//                        switch path {
+//                        case .profileView(let profile):
+//                            ProfileCardView(profile: profile)
+//                        }
+//                    }
+            }
+//        }
     }
 }

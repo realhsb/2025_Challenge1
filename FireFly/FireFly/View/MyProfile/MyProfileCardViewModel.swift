@@ -17,6 +17,7 @@ class MyProfileCardViewModel: ObservableObject {
     }
     
     private var container: DIContainer
+    var profile: Profile = .profileStub01
     
     init(container: DIContainer) {
         self.container = container

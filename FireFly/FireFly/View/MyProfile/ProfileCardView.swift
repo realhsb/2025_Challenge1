@@ -1,52 +1,61 @@
 //
-//  MyProfileCardView.swift
+//  ProfileCardView.swift
 //  FireFly
 //
-//  Created by Soop on 3/25/25.
+//  Created by Soop on 3/26/25.
 //
 
 import SwiftUI
 
-struct MyProfileCardView: View {
+struct ProfileCardView: View {
     
-    @EnvironmentObject var container: DIContainer
-    var viewModel: MyProfileCardViewModel
+    var profile: Profile
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
-        ZStack {
-            Color.basicWhite
-            VStack(spacing: 16) {
-                editButtonView
-                
-                // 프로필 사진
-                profileImageView
-                
-                // 닉네임
-                nicknameView
-                
-                // 채팅 태그 4가지
-                tagsView
-                
-                // 구분선
-                divider
-                
-                // 한줄소개
-                descriptionView
+        NavigationView {
+                VStack(spacing: 16) {
+                    editButtonView
+                    
+                    // 프로필 사진
+                    profileImageView
+                    
+                    // 닉네임
+                    nicknameView
+                    
+                    // 채팅 태그 4가지
+                    tagsView
+                    
+                    // 구분선
+                    divider
+                    
+                    // 한줄소개
+                    descriptionView
+                }
+                .padding(.horizontal, 16)
+                .padding(.vertical, 12)
+                .background(Color.basicWhite)
+                .clipShape(RoundedRectangle(cornerRadius: 16))
+                .overlay {
+                    RoundedRectangle(cornerRadius: 16)
+                        .stroke(Color.strokeGray, lineWidth: 1)
+                }
+                .shadow(color: .shadowGray, radius: 3)
+                .padding(.top, 10)
+                .padding(.horizontal, 20)
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        Button {
+                            dismiss()
+                        } label: {
+                            Image(systemName: "xmark")
+                                .foregroundColor(.black)
+                        }
+                    }
+                }
             }
-            .padding(.horizontal, 16)
-            .padding(.vertical, 12)
-            .background(Color.basicWhite) // ⬅️ 여기에 배경을 설정
-            .clipShape(RoundedRectangle(cornerRadius: 16))
-            .overlay {
-                RoundedRectangle(cornerRadius: 16)
-                    .stroke(Color.strokeGray, lineWidth: 1)
-            }
-            .shadow(color: .shadowGray, radius: 3)
-            .padding(.top, 10)
-            .padding(.horizontal, 20)
-            Spacer()
+                Spacer()
         }
-    }
     
     @ViewBuilder
     var profileImageView: some View {
@@ -72,7 +81,7 @@ struct MyProfileCardView: View {
     }
     
     var nicknameView: some View {
-        Text(self.viewModel.profile.nickname ?? "")
+        Text(self.profile.nickname ?? "")
             .foregroundStyle(Color.primaryDark)
             .frame(maxWidth: .infinity)
             .padding(.vertical, 12)
@@ -87,7 +96,7 @@ struct MyProfileCardView: View {
     @ViewBuilder
     var tagsView: some View {
         VStack {
-            if let tags = viewModel.profile.tags {
+            if let tags = self.profile.tags {
                     ForEach(tags.indices, id: \.self) { index in
                         let tag = tags[index]
                         
@@ -149,7 +158,7 @@ struct MyProfileCardView: View {
     
     @ViewBuilder
     var descriptionView: some View {
-        Text(self.viewModel.profile.description ?? "")
+        Text(self.profile.description ?? "")
 //            .frame(maxWidth: .infinity)
             .foregroundStyle(Color.primaryDark)
             .padding(20)
@@ -166,15 +175,6 @@ struct MyProfileCardView: View {
     }
 }
 
-
-
-
-struct MyProfileCardView_Previews: PreviewProvider {
-    
-    static var container: DIContainer = .stub
-    
-    static var previews: some View {
-        MyProfileCardView(viewModel: MyProfileCardViewModel(container: container))
-            .environmentObject(container)
-    }
+#Preview {
+    ProfileCardView(profile: .profileStub01)
 }

@@ -16,28 +16,39 @@ struct MainTabView: View {
         VStack {
             HStack(spacing: 10) {
                 ForEach(MainTabType.allCases, id: \.self) { tabType in
-                    VStack {
-                        Button(tabType.description) {
+                    VStack(spacing: 4) {
+                        Button {
                             mainTabViewModel.send(action: .selectTab(tabType))
+                                
+                        } label: {
+                            Text(tabType.description)
+                                .foregroundStyle(mainTabViewModel.container.tabs == tabType ? Color.primaryDark : Color.strokeGray)
                         }
-                        .foregroundStyle(mainTabViewModel.container.tabs == tabType ? .blue : .gray)
                         .animation(.easeInOut(duration: 0.3), value: mainTabViewModel.container.tabs)
+                        .buttonStyle(PlainButtonStyle())
                         Rectangle()
-                            .frame(height: 1)
+                            .frame(width:50, height: 2)
+                            
+                            .animation(.easeInOut(duration: 0.3), value: mainTabViewModel.container.tabs)
+                            .foregroundStyle(mainTabViewModel.container.tabs == tabType ? Color.primaryDark : Color.clear)
+
                     }
                 }
             }
             
             TabView(selection: $mainTabViewModel.container.tabs) {
-                MyProfileCardView(myProfileViewModel: MyProfileCardViewModel(container: container))
+                BoardView()
+                    .tag(MainTabType.board)
+                
+                MyProfileCardView(viewModel: MyProfileCardViewModel(container: container))
                     .tag(MainTabType.myProfile)
                 
                 
-                CollectionView(collectionViewModel: CollectionViewModel(container: container))
+                CollectionView(viewModel: CollectionViewModel(container: container))
                     .tag(MainTabType.collcetion)
                 
             }
-            .tabViewStyle(.page(indexDisplayMode: .never))
+            .tabViewStyle(.page)
             .environmentObject(container)
         }
     }

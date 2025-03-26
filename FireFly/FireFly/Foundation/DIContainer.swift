@@ -10,11 +10,16 @@ import Foundation
 class DIContainer: ObservableObject {
     var services: ServiceType
     @Published var tabs: MainTabType = .myProfile
+    var navigationRouter: NavigationRoutable & ObservableObjectSettable
     
     init(
-        services: ServiceType
+        services: ServiceType,
+        navigationRouter: NavigationRoutable & ObservableObjectSettable = NavigationRouter()
     ) {
         self.services = services
+        self.navigationRouter = navigationRouter
+        self.navigationRouter.setObjectWillChange(objectWillChange)
+
     }
 }
 

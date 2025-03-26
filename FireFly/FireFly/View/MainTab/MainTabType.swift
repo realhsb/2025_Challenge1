@@ -8,11 +8,15 @@
 import Foundation
 
 enum MainTabType: String, CaseIterable, CustomStringConvertible {
+    case board
     case myProfile
     case collcetion
     
     var description: String {
         switch self {
+        case .board:
+            return "보드"
+            
         case .myProfile:
             return "프로필"
             
