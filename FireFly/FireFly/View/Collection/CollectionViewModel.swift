@@ -28,7 +28,6 @@ class CollectionViewModel {
     func send(action: Action) {
         switch action {
         case let .goToProfile(profile):
-            container.pathModel.paths = [.profileView(profile)]
             print("goToProfile")
             print(profile)
             print("🔹 현재 paths: \(container.pathModel.paths)")
