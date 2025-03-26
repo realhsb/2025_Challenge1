@@ -19,6 +19,7 @@ extension Color {
     static let primaryDark = Color(hex: "423C99")
     static let secondary = Color(hex: "FBC558")
     static let strokeGray = Color(hex: "8E98A8")
+    static let shadowGray = Color(hex: "C9C9C9")
 }
 
 public extension Color {
