@@ -12,7 +12,7 @@ struct CommentsView: View {
     var viewModel: ProfileViewModel
     @State var profile: Profile
     @Binding var isFlipped: Bool
-    var isMine: Bool
+    var isMine: Bool = false
     @State var isEdit: Bool = false
     @State private var newComment: String = ""
 //    let ramdomBackgroundColor = [Color.secondary, Color.memoRed, Color.memoBlue,  Color.memoPink, Color.memoGreen]
@@ -29,7 +29,9 @@ struct CommentsView: View {
                         .foregroundStyle(Color.primaryDark)
                         
                     Spacer()
-                    editButtonView
+                    if !isMine {
+                        editButtonView
+                    }
                         
                 }
                 .padding(18)
@@ -150,7 +152,7 @@ struct CommentsView_Previews: PreviewProvider {
     static var container: DIContainer = .stub
     
     static var previews: some View {
-        CommentsView(viewModel: .init(container: container), profile: .profileStub01, isFlipped: .constant(false), isMine: false)
+        CommentsView(viewModel: .init(container: container), profile: .profileStub01, isFlipped: .constant(false))
     }
 }
 

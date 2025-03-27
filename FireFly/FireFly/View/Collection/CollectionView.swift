@@ -54,10 +54,10 @@ struct CollectionView: View {
                                 .padding(.bottom, 10)
                         } else {
                             VStack {
-                                Text("\(item.tags!.randomElement() ?? "???")")
-                                    .font(.pretendardMedium14)
                                 Text("???")
                                     .font(.pretendardBold20)
+                                Text("\(item.tags!.randomElement() ?? "???")")
+                                    .font(.pretendardMedium14)
                             }
                             .foregroundStyle(Color.primaryDark)
                             .padding(.bottom, 10)

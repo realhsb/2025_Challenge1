@@ -38,14 +38,15 @@ struct MainTabView: View {
             }
             
             TabView(selection: $mainTabViewModel.container.tabs) {
-//                CommentsView()
-//                    .tag(MainTabType.board)
+                @State var viewModel = ProfileViewModel(container: container)
                 
-                MyProfileCardView(viewModel: ProfileViewModel(container: container))
+                CommentsView(viewModel: viewModel, profile: viewModel.profile, isFlipped: .constant(false), isMine: true)
+                
+                MyProfileCardView(viewModel: viewModel)
                     .tag(MainTabType.myProfile)
                 
                 
-                CollectionView(viewModel: ProfileViewModel(container: container))
+                CollectionView(viewModel: viewModel)
                     .tag(MainTabType.collcetion)
                 
             }
