@@ -14,11 +14,13 @@ struct ProfileCardView: View {
     @State var isFlipped = false
     @State private var cardSize: CGSize = .zero // 카드 크기 저장 변수
     
+    var viewModel: ProfileViewModel
+    
     var body: some View {
         NavigationView {
             ZStack {
                 if isFlipped {
-                    CommentsView()
+                    CommentsView(viewModel: viewModel, profile: profile, isFlipped: $isFlipped, isMine: false)
                 } else {
                     VStack {
                         cardView
@@ -187,6 +189,14 @@ struct ProfileCardView: View {
     }
 }
 
-#Preview {
-    ProfileCardView(profile: .profileStub01)
+
+struct ProfileCardView_Previews: PreviewProvider {
+    
+    static var container: DIContainer = .stub
+    
+    static var previews: some View {
+        ProfileCardView(profile: .profileStub01, viewModel: .init(container: container))
+            .environmentObject(container)
+    }
 }
+

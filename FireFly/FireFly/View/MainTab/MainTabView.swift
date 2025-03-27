@@ -19,10 +19,11 @@ struct MainTabView: View {
                     VStack(spacing: 4) {
                         Button {
                             mainTabViewModel.send(action: .selectTab(tabType))
-                                
+                            print(checkFontFile())
                         } label: {
                             Text(tabType.description)
                                 .foregroundStyle(mainTabViewModel.container.tabs == tabType ? Color.primaryDark : Color.strokeGray)
+                                .font(.pretendardBold18)
                         }
                         .animation(.easeInOut(duration: 0.3), value: mainTabViewModel.container.tabs)
                         .buttonStyle(PlainButtonStyle())
@@ -40,11 +41,11 @@ struct MainTabView: View {
 //                CommentsView()
 //                    .tag(MainTabType.board)
                 
-                MyProfileCardView(viewModel: MyProfileCardViewModel(container: container))
+                MyProfileCardView(viewModel: ProfileViewModel(container: container))
                     .tag(MainTabType.myProfile)
                 
                 
-                CollectionView(viewModel: CollectionViewModel(container: container))
+                CollectionView(viewModel: ProfileViewModel(container: container))
                     .tag(MainTabType.collcetion)
                 
             }

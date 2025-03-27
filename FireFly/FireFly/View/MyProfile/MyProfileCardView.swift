@@ -10,7 +10,7 @@ import SwiftUI
 struct MyProfileCardView: View {
     
     @EnvironmentObject var container: DIContainer
-    var viewModel: MyProfileCardViewModel
+    var viewModel: ProfileViewModel
     
     var body: some View {
         cardView
@@ -179,7 +179,7 @@ struct MyProfileCardView_Previews: PreviewProvider {
     static var container: DIContainer = .stub
     
     static var previews: some View {
-        MyProfileCardView(viewModel: MyProfileCardViewModel(container: container))
+        MyProfileCardView(viewModel: ProfileViewModel(container: container))
             .environmentObject(container)
     }
 }

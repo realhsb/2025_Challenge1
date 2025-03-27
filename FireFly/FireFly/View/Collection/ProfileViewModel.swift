@@ -8,7 +8,7 @@
 import Foundation
 
 @Observable
-class CollectionViewModel {
+class ProfileViewModel {
     
     enum Action {
         case goToProfile(Profile)
@@ -18,7 +18,8 @@ class CollectionViewModel {
     
     var collectionDestination: CollectionDestination?
     
-    var memberList: [Profile] = [.profileStub01, .profileStub02, .profileStub03, .profileStub04, .profileStub05]
+    var profile: Profile = .profileStub01
+    var memberList: [Profile] = [.profileStub01, .profileStub02, .profileStub03, .profileStub04, .profileStub05, .profileStub06, .profileStub07, .profileStub08, .profileStub09, .profileStub10]
     var isPresentProfile: Bool = false
     
     init(container: DIContainer) {
@@ -30,7 +31,7 @@ class CollectionViewModel {
         case let .goToProfile(profile):
             print("goToProfile")
             print(profile)
-            print("🔹 현재 paths: \(container.pathModel.paths)")
+//            print("🔹 현재 paths: \(container.pathModel.paths)")
         }
     }
 }
