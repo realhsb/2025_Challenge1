@@ -48,6 +48,7 @@ struct CommentsView: View {
                                 x: CGFloat.random(in: 40...(geometry.size.width - 40)),
                                 y: CGFloat.random(in: 80...(geometry.size.height - 80))
                             )
+                            .shadow(radius: 1, y: 1)
                     }
                 }
                 
@@ -97,6 +98,7 @@ struct CommentsView: View {
 //                randomColor = [ColorType.memoBlue, .memoGreen, .memoBlue, .memoRed].randomElement()!
             } label: {
                 Text("프로필")
+                    .font(.pretendardBold16)
                     .foregroundStyle(Color.primaryDark)
                     .padding(.horizontal, 14)
                     .padding(.vertical, 4)

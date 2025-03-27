@@ -78,6 +78,7 @@ struct MyProfileCardView: View {
                 
             } label: {
                 Text("편집")
+                    .font(.pretendardBold16)
                     .foregroundStyle(Color.primaryDark)
                     .padding(.horizontal, 14)
                     .padding(.vertical, 4)
@@ -123,6 +124,7 @@ struct MyProfileCardView: View {
         if isLeft {
             HStack {
                 Text(tag)
+                    .font(.pretendardBold16)
                     .padding(.horizontal, 12)
                     .padding(.vertical, 10)
                     .foregroundStyle(Color.basicWhite)
@@ -140,6 +142,7 @@ struct MyProfileCardView: View {
             HStack {
                 Spacer()
                 Text(tag)
+                    .font(.pretendardBold16)
                     .foregroundStyle(Color.basicWhite)
                     .background(Color.secondary)
                 
@@ -168,6 +171,7 @@ struct MyProfileCardView: View {
     var descriptionView: some View {
         Text(self.viewModel.profile.description ?? "")
 //            .frame(maxWidth: .infinity)
+            .font(.pretendardMedium14)
             .foregroundStyle(Color.primaryDark)
             .padding(20)
             .frame(maxWidth: .infinity, alignment: .topLeading) // 왼쪽 위 정렬

@@ -73,9 +73,23 @@ struct ProfileCardView: View {
     
     @ViewBuilder
     var profileImageView: some View {
-        Circle()
+//        Circle()
+//            
+//            .frame(width: 230, height: 230)
+        Image(self.profile.image ?? "Soop")
         
             .frame(width: 230, height: 230)
+            .clipShape(Circle())
+            .overlay {
+                Circle()
+//                    .border(Color.strokeGray, width: 1)
+//                    .stroke(Color.strokeGray, lineWidth: 11)
+//                    .stroke(Color.primary, lineWidth: 10)
+                    .strokeBorder(Color.strokeGray, lineWidth: 7)
+                    .strokeBorder(Color.primary, lineWidth: 6)
+                    .strokeBorder(Color.strokeGray, lineWidth: 1)
+                    
+            }
     }
     
     var editButtonView: some View {
@@ -85,6 +99,7 @@ struct ProfileCardView: View {
                 isFlipped.toggle()
             } label: {
                 Text("코멘트")
+                    .font(.pretendardBold16)
                     .foregroundStyle(Color.primaryDark)
                     .padding(.horizontal, 14)
                     .padding(.vertical, 4)
@@ -96,6 +111,7 @@ struct ProfileCardView: View {
     
     var nicknameView: some View {
         Text(self.profile.nickname ?? "")
+            .font(.pretendardBold22)
             .foregroundStyle(Color.primaryDark)
             .frame(maxWidth: .infinity)
             .padding(.vertical, 12)
@@ -129,6 +145,7 @@ struct ProfileCardView: View {
         if isLeft {
             HStack {
                 Text(tag)
+                    .font(.pretendardBold16)
                     .padding(.horizontal, 12)
                     .padding(.vertical, 10)
                     .foregroundStyle(Color.basicWhite)
@@ -146,6 +163,7 @@ struct ProfileCardView: View {
             HStack {
                 Spacer()
                 Text(tag)
+                    .font(.pretendardBold16)
                     .foregroundStyle(Color.basicWhite)
                     .background(Color.secondary)
                 
@@ -173,6 +191,7 @@ struct ProfileCardView: View {
     @ViewBuilder
     var descriptionView: some View {
         Text(self.profile.description ?? "")
+            .font(.pretendardMedium14)
 //            .frame(maxWidth: .infinity)
             .foregroundStyle(Color.primaryDark)
             .padding(20)
