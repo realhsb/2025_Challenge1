@@ -11,51 +11,63 @@ struct ProfileCardView: View {
     
     var profile: Profile
     @Environment(\.dismiss) var dismiss
+    @State var isFlipped = false
+    @State private var cardSize: CGSize = .zero // 카드 크기 저장 변수
     
     var body: some View {
         NavigationView {
-                VStack(spacing: 16) {
-                    editButtonView
-                    
-                    // 프로필 사진
-                    profileImageView
-                    
-                    // 닉네임
-                    nicknameView
-                    
-                    // 채팅 태그 4가지
-                    tagsView
-                    
-                    // 구분선
-                    divider
-                    
-                    // 한줄소개
-                    descriptionView
-                }
-                .padding(.horizontal, 16)
-                .padding(.vertical, 12)
-                .background(Color.basicWhite)
-                .clipShape(RoundedRectangle(cornerRadius: 16))
-                .overlay {
-                    RoundedRectangle(cornerRadius: 16)
-                        .stroke(Color.strokeGray, lineWidth: 1)
-                }
-                .shadow(color: .shadowGray, radius: 3)
-                .padding(.top, 10)
-                .padding(.horizontal, 20)
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarLeading) {
-                        Button {
-                            dismiss()
-                        } label: {
-                            Image(systemName: "xmark")
-                                .foregroundColor(.black)
-                        }
+            ZStack {
+                if isFlipped {
+                    CommentsView()
+                } else {
+                    VStack {
+                        cardView
+                        Spacer()
                     }
                 }
             }
-                Spacer()
+            .scaleEffect(x: isFlipped ? -1 : 1)
+                        
+            .rotation3DEffect(.degrees(isFlipped ? 180 : 0), axis: (x: 0, y: -1, z: 0))
+            .animation(.easeInOut(duration: 0.6), value: isFlipped)
+                        
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button {
+                        dismiss()
+                    } label: {
+                        Image(systemName: "xmark")
+                            .foregroundColor(.black)
+                }
+            }
         }
+    }
+}
+    
+    @ViewBuilder
+    var cardView: some View {
+//        GeometryReader { geometry in
+            VStack(spacing: 16) {
+                editButtonView
+                profileImageView
+                nicknameView
+                tagsView
+                divider
+                descriptionView
+            }
+            .frame(height: 650)
+            .padding(.horizontal, 16)
+            .padding(.vertical, 12)
+            .background(Color.basicWhite)
+            .clipShape(RoundedRectangle(cornerRadius: 16))
+            .overlay {
+                RoundedRectangle(cornerRadius: 16)
+                    .stroke(Color.strokeGray, lineWidth: 1)
+            }
+            .shadow(color: .shadowGray, radius: 3)
+            .padding(.top, 10)
+            .padding(.horizontal, 20)
+    }
     
     @ViewBuilder
     var profileImageView: some View {
@@ -68,9 +80,9 @@ struct ProfileCardView: View {
         HStack {
             Spacer()
             Button {
-                
+                isFlipped.toggle()
             } label: {
-                Text("편집")
+                Text("코멘트")
                     .foregroundStyle(Color.primaryDark)
                     .padding(.horizontal, 14)
                     .padding(.vertical, 4)

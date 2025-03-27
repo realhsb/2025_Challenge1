@@ -13,7 +13,12 @@ struct MyProfileCardView: View {
     var viewModel: MyProfileCardViewModel
     
     var body: some View {
-        ZStack {
+        cardView
+    }
+    
+    @ViewBuilder
+    var cardView: some View {
+        ZStack(alignment: .top) {
             Color.basicWhite
             VStack(spacing: 16) {
                 editButtonView

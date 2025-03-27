@@ -15,7 +15,7 @@ enum MainTabType: String, CaseIterable, CustomStringConvertible {
     var description: String {
         switch self {
         case .board:
-            return "보드"
+            return "코멘트"
             
         case .myProfile:
             return "프로필"

@@ -37,8 +37,8 @@ struct MainTabView: View {
             }
             
             TabView(selection: $mainTabViewModel.container.tabs) {
-                BoardView()
-                    .tag(MainTabType.board)
+//                CommentsView()
+//                    .tag(MainTabType.board)
                 
                 MyProfileCardView(viewModel: MyProfileCardViewModel(container: container))
                     .tag(MainTabType.myProfile)
