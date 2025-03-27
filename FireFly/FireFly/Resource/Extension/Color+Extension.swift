@@ -20,6 +20,11 @@ extension Color {
     static let secondary = Color(hex: "FBC558")
     static let strokeGray = Color(hex: "8E98A8")
     static let shadowGray = Color(hex: "C9C9C9")
+    
+    static let memoRed = Color(hex: "FE9E9E")
+    static let memoGreen = Color(hex: "AFFE9E")
+    static let memoPink = Color(hex: "FE9EE9")
+    static let memoBlue = Color(hex: "9EDFFE")
 }
 
 public extension Color {

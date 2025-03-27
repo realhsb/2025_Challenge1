@@ -15,6 +15,8 @@ struct CommentsView: View {
     var isMine: Bool
     @State var isEdit: Bool = false
     @State private var newComment: String = ""
+//    let ramdomBackgroundColor = [Color.secondary, Color.memoRed, Color.memoBlue,  Color.memoPink, Color.memoGreen]
+    @State var randomColor: [ColorType] = [ColorType.memoBlue, .memoGreen, .memoBlue, .memoRed]
     
     var body: some View {
         ZStack {
@@ -37,12 +39,9 @@ struct CommentsView: View {
                         Text(comment.text)
                             .padding(.horizontal, 20)
                             .padding(.vertical, 10)
-                            .font(.pretendardMedium18)
+                            .font(.pretendardMedium24)
                             .foregroundStyle(Color.primaryDark)
-                            .background(Color.primary)
-//                            .shadow(Color.shadowGray, x: 5, y: 5)
-//                            .frame(maxWidth: 70)
-                            .padding(20)
+                            .background(self.randomColor[Int.random(in: 0..<self.randomColor.count)].backgroundColor)
                             .position(
                                 x: CGFloat.random(in: 40...(geometry.size.width - 40)),
                                 y: CGFloat.random(in: 80...(geometry.size.height - 80))
@@ -85,6 +84,7 @@ struct CommentsView: View {
             editView
                 .presentationDetents([.medium])
         }
+        
     }
     
     var editButtonView: some View {
@@ -92,6 +92,7 @@ struct CommentsView: View {
             Spacer()
             Button {
                 isFlipped.toggle()
+//                randomColor = [ColorType.memoBlue, .memoGreen, .memoBlue, .memoRed].randomElement()!
             } label: {
                 Text("프로필")
                     .foregroundStyle(Color.primaryDark)
@@ -104,33 +105,43 @@ struct CommentsView: View {
     }
     
     var editView: some View {
-        VStack {
-            TextField("\(profile.nickname!)을 위한 코멘트를 입력하세요 💕", text: $newComment)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding()
-            
+        VStack(alignment: .leading, spacing: 40) {
+            Text("\(profile.nickname!)을 위한 코멘트를 입력하세요 💕")
+                .foregroundStyle(Color.primaryDark)
+                .font(.pretendardBold30)
+            TextField("", text: $newComment)
+                .textFieldStyle(CommonTextfieldStyle())
             HStack {
-                            Button("취소") {
-                                isEdit.toggle()  // 편집 창 닫기
-                            }
+//                Spacer()
+                    Button {
+                        isEdit.toggle()  // 편집 창 닫기
+                    } label: {
+                        Text("취소")
                             .foregroundStyle(.white)
+                            .frame(width: 150)
                             .padding()
-                            .background(Color.gray)
+                            .background(Color.strokeGray)
                             .clipShape(RoundedRectangle(cornerRadius: 10))
-                            
-                            Button("추가") {
-                                if !newComment.isEmpty {
-                                    profile.comments?.append(Comment(text: newComment))  // 새로운 댓글 추가
-                                    newComment = ""  // 입력 필드 초기화
-                                    isEdit.toggle()  // 편집 창 닫기
-                                }
-                            }
-                            .foregroundStyle(.white)
-                            .padding()
-                            .background(Color.blue)
-                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                    }
+                    
+                    Button("추가") {
+                        if !newComment.isEmpty {
+                            profile.comments?.append(Comment(text:newComment,backgroundColor: randomColor.randomElement()!)) //새로운 댓글 추가
+                            newComment = ""  // 입력 필드 초기화
+                            isEdit.toggle()  // 편집 창 닫기
                         }
+                    }
+                    .foregroundStyle(.white)
+                    .frame(width: 150)
+                    .padding()
+                    .background(Color.primaryDark)
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+//                Spacer()
+                    }
+//            .frame(width: .infinity)
+//            .padding(20)
         }
+        .padding(20)
     }
 }
 

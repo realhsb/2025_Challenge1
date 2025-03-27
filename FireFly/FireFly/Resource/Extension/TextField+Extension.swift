@@ -13,13 +13,18 @@ struct CommonTextfieldStyle: TextFieldStyle {
         
         ZStack {
             Rectangle()
-                .foregroundColor(Color.green)
-                .cornerRadius(8)
-                .frame(height: 46)
+                .foregroundStyle(Color.basicWhite)
+                .frame(width: .infinity, height: 50)
+                .clipShape(RoundedRectangle(cornerRadius: 16))
+                .overlay {
+                    RoundedRectangle(cornerRadius: 16)
+                        .stroke(Color.strokeGray, lineWidth: 0.5)
+                        .shadow(color: Color.shadowGray, radius: 1)
+                }
             
             // 텍스트필드
             configuration
-                .font(.title)
+                .font(.pretendardMedium18)
                 .padding()
         }
     }

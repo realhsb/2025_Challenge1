@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		6C9BEBB92D94FFFE0048ECA2 /* ColorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9BEBB82D94FFFE0048ECA2 /* ColorType.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		6CF10F4F2D91289300186003 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -24,6 +28,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6C9BEBB82D94FFFE0048ECA2 /* ColorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorType.swift; sourceTree = "<group>"; };
 		6CF10F3D2D91289100186003 /* FireFly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FireFly.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CF10F4E2D91289300186003 /* FireFlyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FireFlyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CF10F582D91289300186003 /* FireFlyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FireFlyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -88,6 +93,7 @@
 		6CF10F342D91289100186003 = {
 			isa = PBXGroup;
 			children = (
+				6C9BEBB82D94FFFE0048ECA2 /* ColorType.swift */,
 				6CF10F3F2D91289100186003 /* FireFly */,
 				6CF10F512D91289300186003 /* FireFlyTests */,
 				6CF10F5B2D91289300186003 /* FireFlyUITests */,
@@ -249,6 +255,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6C9BEBB92D94FFFE0048ECA2 /* ColorType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

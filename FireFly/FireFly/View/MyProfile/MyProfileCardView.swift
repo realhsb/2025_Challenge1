@@ -55,9 +55,20 @@ struct MyProfileCardView: View {
     
     @ViewBuilder
     var profileImageView: some View {
-        Circle()
+        Image(self.viewModel.profile.image ?? "Soop")
         
             .frame(width: 230, height: 230)
+            .clipShape(Circle())
+            .overlay {
+                Circle()
+//                    .border(Color.strokeGray, width: 1)
+//                    .stroke(Color.strokeGray, lineWidth: 11)
+//                    .stroke(Color.primary, lineWidth: 10)
+                    .strokeBorder(Color.strokeGray, lineWidth: 7)
+                    .strokeBorder(Color.primary, lineWidth: 6)
+                    .strokeBorder(Color.strokeGray, lineWidth: 1)
+                    
+            }
     }
     
     var editButtonView: some View {
@@ -79,6 +90,7 @@ struct MyProfileCardView: View {
     var nicknameView: some View {
         Text(self.viewModel.profile.nickname ?? "")
             .foregroundStyle(Color.primaryDark)
+            .font(.pretendardBold22)
             .frame(maxWidth: .infinity)
             .padding(.vertical, 12)
             .background(Color.primary)
