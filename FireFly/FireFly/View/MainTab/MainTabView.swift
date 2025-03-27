@@ -41,6 +41,7 @@ struct MainTabView: View {
                 @State var viewModel = ProfileViewModel(container: container)
                 
                 CommentsView(viewModel: viewModel, profile: viewModel.profile, isFlipped: .constant(false), isMine: true)
+                    .tag(MainTabType.board)
                 
                 MyProfileCardView(viewModel: viewModel)
                     .tag(MainTabType.myProfile)
